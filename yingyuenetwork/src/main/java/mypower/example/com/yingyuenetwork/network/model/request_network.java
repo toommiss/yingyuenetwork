@@ -14,13 +14,18 @@ public class request_network {
     public static String hb_url;
     private static request_network instance;
 
+
+
     public static request_network getInstance() {
         if (instance == null) {
-            instance = new request_network();
+            synchronized (request_network.class) {
+                if (instance == null) {
+                    instance = new request_network();
+                }
+            }
         }
         return instance;
     }
-
     /**
      * @hide
      */
